@@ -54,7 +54,45 @@ get_header();
                         data-photo-ref="<?php echo esc_attr($post_reference); ?>">Contact
                     </button>
                 </div>
+                <div class="photo-info-nav-block">
+                    <div class="navigation-thumbnails">
+                        <?php if ($prev_post) : ?>
+                            <!-- Miniatura do Post Anterior -->
+                            <div class="prev-post-thumbnail">
+                                <a href="<?php echo get_permalink($prev_post->ID); ?>">
+                                    <img src="<?php echo get_the_post_thumbnail_url($prev_post->ID, 'thumbnail'); ?>" alt="<?php echo get_the_title($prev_post->ID); ?>">
+                                </a>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if ($next_post) : ?>
+                            <!-- Miniatura do Post Seguinte -->
+                            <div class="next-post-thumbnail">
+                                <a href="<?php echo get_permalink($next_post->ID); ?>">
+                                    <img src="<?php echo get_the_post_thumbnail_url($next_post->ID, 'thumbnail'); ?>" alt="<?php echo get_the_title($next_post->ID); ?>">
+                                </a>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+
+                    <!-- Setas de Navegação -->
+                    <div class="navigation-arrows">
+                        <?php if ($prev_post) : ?>
+                            <a href="<?php echo get_permalink($prev_post->ID); ?>" class="nav-link prev-link">
+                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/prev-arrow.png" alt="Previous">
+                            </a>
+                        <?php endif; ?>
+
+                        <?php if ($next_post) : ?>
+                            <a href="<?php echo get_permalink($next_post->ID); ?>" class="nav-link next-link">
+                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/next-arrow.png" alt="Next">
+                            </a>
+                        <?php endif; ?>
+                    </div>
+                </div>
             </div>
+
+
 
 
 
@@ -69,43 +107,6 @@ get_header();
                     // Exibe o formulário de contato
                     echo do_shortcode('[contact-form-7 id="ref_id" title="Contact form"]');
                     ?>
-                </div>
-            </div>
-
-            <div class="photo-info-nav-block">
-                <div class="navigation-thumbnails">
-                    <?php if ($prev_post) : ?>
-                        <!-- Miniatura do Post Anterior -->
-                        <div class="prev-post-thumbnail">
-                            <a href="<?php echo get_permalink($prev_post->ID); ?>">
-                                <img src="<?php echo get_the_post_thumbnail_url($prev_post->ID, 'thumbnail'); ?>" alt="<?php echo get_the_title($prev_post->ID); ?>">
-                            </a>
-                        </div>
-                    <?php endif; ?>
-
-                    <?php if ($next_post) : ?>
-                        <!-- Miniatura do Post Seguinte -->
-                        <div class="next-post-thumbnail">
-                            <a href="<?php echo get_permalink($next_post->ID); ?>">
-                                <img src="<?php echo get_the_post_thumbnail_url($next_post->ID, 'thumbnail'); ?>" alt="<?php echo get_the_title($next_post->ID); ?>">
-                            </a>
-                        </div>
-                    <?php endif; ?>
-                </div>
-
-                <!-- Setas de Navegação -->
-                <div class="navigation-arrows">
-                    <?php if ($prev_post) : ?>
-                        <a href="<?php echo get_permalink($prev_post->ID); ?>" class="nav-link prev-link">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/prev-arrow.png" alt="Previous">
-                        </a>
-                    <?php endif; ?>
-
-                    <?php if ($next_post) : ?>
-                        <a href="<?php echo get_permalink($next_post->ID); ?>" class="nav-link next-link">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/next-arrow.png" alt="Next">
-                        </a>
-                    <?php endif; ?>
                 </div>
             </div>
         </div>

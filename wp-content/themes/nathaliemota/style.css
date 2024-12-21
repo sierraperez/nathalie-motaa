@@ -66,7 +66,7 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
  * 1. Correct the line height in all browsers.
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
-html {
+ html {
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
 }
@@ -1097,9 +1097,7 @@ textarea {
 .img-single {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* Ajusta a imagem dentro do contêiner */
   object-fit: cover; /* Ajusta como a imagem se encaixa dentro do contêiner */
-  height: -webkit-fill-available;
 }
 .photo-info-nav {
   display: flex;
