@@ -56,11 +56,15 @@ get_header();
     <!-- Botão para carregar mais -->
     <button id="load-more" data-page="1">Charger plus</button>
 
-    <!-- Estrutura do Overlay -->
-    <div id="photo-overlay" class="photo-overlay">
-        <span class="close-overlay">&times;</span>
-        <img class="overlay-image" src="" alt="Imagem em destaque">
-        <p class="overlay-caption"></p>
+    <!-- Lightbox -->
+    <div id="photo-lightbox" class="photo-lightbox">
+        <span class="close-lightbox">&times;</span>
+        <div class="lightbox-content">
+            <button class="nav-arrow left-arrow">&larr;</button>
+            <img class="lightbox-image" src="" alt="Imagem em destaque">
+            <button class="nav-arrow right-arrow">&rarr;</button>
+        </div>
+        <p class="lightbox-caption"></p> <!-- Legenda agora ficará abaixo -->
     </div>
 
 </main>

@@ -36,31 +36,56 @@ $(document).ready(function () {
 
 
 
-  // Função para adicionar eventos de clique às imagens
-  function attachImageEvents() {
-    const overlay = $("#photo-overlay");
-    const overlayImage = $(".overlay-image");
-    const overlayCaption = $(".overlay-caption");
 
-    $(".galerie-photo img").on("click", function () {
-      const imgSrc = $(this).attr("src");
-      const caption = $(this).attr("alt") || "Sem descrição disponível";
 
-      overlayImage.attr("src", imgSrc);
-      overlayCaption.text(caption);
-      overlay.css("display", "flex");
-    });
+ // Selecionar elementos
+const lightbox = document.getElementById("photo-lightbox");
+const closeLightbox = document.querySelector(".close-lightbox");
+const lightboxImage = document.querySelector(".lightbox-image");
+const lightboxCaption = document.querySelector(".lightbox-caption");
+const leftArrow = document.querySelector(".left-arrow");
+const rightArrow = document.querySelector(".right-arrow");
+const galleryImages = document.querySelectorAll(".gallery-image");
 
-    $(".close-overlay").on("click", function () {
-      overlay.hide();
-    });
+let currentIndex = 0; // Índice da imagem atual
 
-    overlay.on("click", function (event) {
-      if (event.target === this) {
-        overlay.hide();
-      }
-    });
+// Abrir o lightbox
+galleryImages.forEach((image, index) => {
+  image.addEventListener("click", () => {
+    lightbox.style.display = "flex";
+    updateLightbox(index);
+  });
+});
+
+// Fechar o lightbox
+closeLightbox.addEventListener("click", () => {
+  lightbox.style.display = "none";
+});
+
+// Atualizar conteúdo do lightbox
+function updateLightbox(index) {
+  currentIndex = index;
+  lightboxImage.src = galleryImages[currentIndex].src;
+  lightboxCaption.textContent =
+    galleryImages[currentIndex].alt || "Imagem em destaque";
+}
+
+// Navegar para a imagem anterior
+leftArrow.addEventListener("click", () => {
+  currentIndex =
+    (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+  updateLightbox(currentIndex);
+});
+
+// Navegar para a próxima imagem
+rightArrow.addEventListener("click", () => {
+  currentIndex = (currentIndex + 1) % galleryImages.length;
+  updateLightbox(currentIndex);
+});
+
+// Fechar o lightbox ao clicar fora da imagem
+lightbox.addEventListener("click", (e) => {
+  if (e.target === lightbox) {
+    lightbox.style.display = "none";
   }
-
-  // Chama a função inicialmente
-  attachImageEvents();
+});
