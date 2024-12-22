@@ -16,41 +16,38 @@ get_header();
 
 
 
-    <?php get_template_part("template-parts/photo/filter-photo")?>
+    <?php get_template_part("template-parts/photo/filter-photo") ?>
 
 
     <!-- Galeria de Fotos -->
     <section class="galerie-photo" id="photo-gallery">
-    <?php
-    // Paginação com a variável paged
-    $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+        <?php
+        // Paginação com a variável paged
+        $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
-    $args = array(
-        'post_type' => 'photo',
-        'posts_per_page' => 8, // Mostra apenas 8 imagens por página
-        'order' => 'DESC',
-        'orderby' => 'DATE',
-        'paged' => $paged, // A página será dinâmica
-    );
-    $query = new WP_Query($args);
+        $args = array(
+            'post_type' => 'photo',
+            'posts_per_page' => 8, // Mostra apenas 8 imagens por página
+            'order' => 'DESC',
+            'orderby' => 'DATE',
+            'paged' => $paged, // A página será dinâmica
+        );
+        $query = new WP_Query($args);
 
-    if ($query->have_posts()) {
-        while ($query->have_posts()) {
-            $query->the_post();
-    ?>
-            <!-- Cada imagem da galeria -->
-            <article class="photo-item">
-                <img
-                    src="<?php echo esc_url(get_the_post_thumbnail_url()); ?>"
-                    alt="<?php echo esc_attr(get_the_title()); ?>"
-                    class="gallery-image">
-            </article>
-    <?php
+        if ($query->have_posts()) {
+            while ($query->have_posts()) {
+                $query->the_post();
+        ?>
+                <!-- Cada imagem da galeria -->
+                <?php
+                get_template_part("template-parts/photo/one-photo");
+                ?>
+        <?php
+            }
+            wp_reset_postdata(); // Reseta a query
         }
-        wp_reset_postdata(); // Reseta a query
-    }
-    ?>
-</section>
+        ?>
+    </section>
 
 
     <!-- Botão para carregar mais -->
@@ -72,6 +69,3 @@ get_header();
 <?php
 get_footer();
 ?>
-
-
-

@@ -22,7 +22,9 @@ jQuery(document).ready(function ($) {
                             button.text('Carregar mais');
                         }
                     }
-                }
+                };
+                Lightbox.init();
+                
             },
             error: function (xhr, status, error) {
                 console.error("Erro ao carregar mais fotos:", error);

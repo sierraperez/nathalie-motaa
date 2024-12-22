@@ -29,7 +29,7 @@ function filtres() {
               // Valida o conteúdo da resposta antes de substituir
               if (response.success) {
                   gallery.html(response.data); // Substitui o conteúdo da galeria com os resultados
-                  attachImageEvents(); // Reaplica os eventos às imagens filtradas
+                    Lightbox.init();
               } else {
                   console.error("Erro: resposta do servidor está vazia.");
               }

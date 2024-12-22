@@ -148,8 +148,10 @@ function nathaliemota_scripts()
 	wp_style_add_data('nathaliemota-style', 'rtl', 'replace');
 	wp_enqueue_style('font-awesome', get_template_directory_uri() . '/assets/fonts/fontawesome/css/all.min.css', false, '6.4.2');
 	wp_enqueue_style('theme-css', get_template_directory_uri() . '/assets/css/theme.css', array(), _S_VERSION);
+	wp_enqueue_style('lightbox-css', get_template_directory_uri() . '/assets/css/lightbox.css', array(), _S_VERSION);
 	wp_enqueue_script('nathaliemota-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true);
 	wp_enqueue_script('nathaliemota-main', get_template_directory_uri() . '/js/main.js', array(), _S_VERSION, true);
+
 	if (is_singular() && comments_open() && get_option('thread_comments')) {
 		wp_enqueue_script('comment-reply');
 	}
@@ -188,6 +190,8 @@ if (defined('JETPACK__VERSION')) {
 function enqueue_load_more_script()
 {
 	wp_enqueue_script('load-more-photos', get_template_directory_uri() . '/js/load-more-photos.js', ['jquery'], null, true);
+	wp_enqueue_script('lightbox', get_template_directory_uri() . '/js/lightbox.js', ['jquery'], null, true);
+	wp_enqueue_script('body-scroll', get_template_directory_uri() . '/js/body-scroll.js', ['jquery'], null, true);
 
 	// Passa a URL de AJAX e outros parâmetros para o JavaScript
 	wp_localize_script('load-more-photos', 'ajax_params', [
@@ -198,43 +202,44 @@ add_action('wp_enqueue_scripts', 'enqueue_load_more_script');
 
 
 
-function load_more_photos() {
-    // Obtém o número da página enviado via AJAX
-    $paged = isset($_POST['page']) ? intval($_POST['page']) : 1;
+function load_more_photos()
+{
+	// Obtém o número da página enviado via AJAX
+	$paged = isset($_POST['page']) ? intval($_POST['page']) : 1;
 
-    $args = array(
-        'post_type'      => 'photo',
-        'posts_per_page' => 8, // Número de imagens por página
-        'paged'          => $paged,
-        'order'          => 'DESC',
-        'orderby'        => 'DATE',
-    );
+	$args = array(
+		'post_type'      => 'photo',
+		'posts_per_page' => 8, // Número de imagens por página
+		'paged'          => $paged,
+		'order'          => 'DESC',
+		'orderby'        => 'DATE',
+	);
 
-    $query = new WP_Query($args);
-    $response = array(); // Inicializa a resposta
+	$query = new WP_Query($args);
+	$response = array(); // Inicializa a resposta
 
-    if ($query->have_posts()) {
-        // Armazena o HTML gerado
-        while ($query->have_posts()) {
-            $query->the_post();
-            ob_start();
-            get_template_part('template-parts/photo/one-photo'); // Renderiza cada imagem
-            $response['html'] .= ob_get_clean(); // Adiciona o HTML gerado à resposta
-        }
+	if ($query->have_posts()) {
+		// Armazena o HTML gerado
+		while ($query->have_posts()) {
+			$query->the_post();
+			ob_start();
+			get_template_part('template-parts/photo/one-photo'); // Renderiza cada imagem
+			$response['html'] .= ob_get_clean(); // Adiciona o HTML gerado à resposta
+		}
 
-        // Verifica se é a última página e adiciona a flag no retorno
-        if ($paged >= $query->max_num_pages) {
-            $response['no_more_posts'] = true;
-        } else {
-            $response['no_more_posts'] = false;
-        }
-    } else {
-        $response['no_more_posts'] = true;
-    }
+		// Verifica se é a última página e adiciona a flag no retorno
+		if ($paged >= $query->max_num_pages) {
+			$response['no_more_posts'] = true;
+		} else {
+			$response['no_more_posts'] = false;
+		}
+	} else {
+		$response['no_more_posts'] = true;
+	}
 
-    wp_send_json_success($response); // Envia a resposta via AJAX
+	wp_send_json_success($response); // Envia a resposta via AJAX
 
-    wp_die(); // Finaliza a requisição AJAX
+	wp_die(); // Finaliza a requisição AJAX
 }
 add_action('wp_ajax_load_more_photos', 'load_more_photos');
 add_action('wp_ajax_nopriv_load_more_photos', 'load_more_photos'); // Permite acesso para visitantes
@@ -307,66 +312,63 @@ add_action('wp_ajax_nopriv_load_more_photos_by_category', 'load_more_photos_by_c
 // FILTRAGEM de fotos de galeria principal 
 
 // Função para filtrar as fotos via AJAX
-function filter_photos() {
-    // Verifica se o nonce é válido
-    if ( !isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'nathalie_mota_nonce') ) {
-        wp_send_json_error( 'Nonce inválido.' );
-        return;
-    }
+function filter_photos()
+{
+	// Verifica se o nonce é válido
+	if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'nathalie_mota_nonce')) {
+		wp_send_json_error('Nonce inválido.');
+		return;
+	}
 
-    // Obtém os dados do filtro
-    $categorie = isset($_POST['categorie']) ? intval($_POST['categorie']) : '';
-    $format = isset($_POST['format']) ? intval($_POST['format']) : '';
-    $order = isset($_POST['order']) ? sanitize_text_field($_POST['order']) : 'DESC';
+	// Obtém os dados do filtro
+	$categorie = isset($_POST['categorie']) ? intval($_POST['categorie']) : '';
+	$format = isset($_POST['format']) ? intval($_POST['format']) : '';
+	$order = isset($_POST['order']) ? sanitize_text_field($_POST['order']) : 'DESC';
 
-    // Configuração da query para filtrar as fotos
-    $args = array(
-        'post_type' => 'photo', // Post type das fotos
-        'posts_per_page' => -1, // Retorna todas as fotos que correspondem aos filtros
-        'orderby' => 'date',
-        'order' => $order,
-    );
+	// Configuração da query para filtrar as fotos
+	$args = array(
+		'post_type' => 'photo', // Post type das fotos
+		'posts_per_page' => -1, // Retorna todas as fotos que correspondem aos filtros
+		'orderby' => 'date',
+		'order' => $order,
+	);
 
-    // Filtro por categoria
-    if ($categorie) {
-        $args['tax_query'][] = array(
-            'taxonomy' => 'categorie',
-            'field'    => 'term_id',
-            'terms'    => $categorie,
-        );
-    }
+	// Filtro por categoria
+	if ($categorie) {
+		$args['tax_query'][] = array(
+			'taxonomy' => 'categorie',
+			'field'    => 'term_id',
+			'terms'    => $categorie,
+		);
+	}
 
-    // Filtro por formato
-    if ($format) {
-        $args['tax_query'][] = array(
-            'taxonomy' => 'format',
-            'field'    => 'term_id',
-            'terms'    => $format,
-        );
-    }
+	// Filtro por formato
+	if ($format) {
+		$args['tax_query'][] = array(
+			'taxonomy' => 'format',
+			'field'    => 'term_id',
+			'terms'    => $format,
+		);
+	}
 
-    // Realiza a consulta no banco de dados
-    $query = new WP_Query($args);
+	// Realiza a consulta no banco de dados
+	$query = new WP_Query($args);
 
-    // Se houver fotos, gera o HTML para as imagens
-    if ($query->have_posts()) {
-        ob_start();
-        while ($query->have_posts()) {
-            $query->the_post();
-            ?>
-            <article class="photo-item">
-                <img src="<?php echo esc_url(get_the_post_thumbnail_url()); ?>" alt="<?php echo esc_attr(get_the_title()); ?>" class="gallery-image">
-            </article>
-            <?php
-        }
-        wp_reset_postdata();
-        $output = ob_get_clean();
-        wp_send_json_success($output);
-    } else {
-        wp_send_json_success('<p>Nenhuma foto encontrada.</p>');
-    }
+	// Se houver fotos, gera o HTML para as imagens
+	if ($query->have_posts()) {
+		ob_start();
+		while ($query->have_posts()) {
+			$query->the_post();
+			get_template_part('template-parts/photo/one-photo'); // Renderiza cada imagem
+		}
+		wp_reset_postdata();
+		$output = ob_get_clean();
+		wp_send_json_success($output);
+	} else {
+		wp_send_json_success('<p>Nenhuma foto encontrada.</p>');
+	}
 
-    wp_die(); // Importante para finalizar corretamente a requisição AJAX
+	wp_die(); // Importante para finalizar corretamente a requisição AJAX
 }
 
 // Registra a ação AJAX para usuários logados
@@ -376,18 +378,18 @@ add_action('wp_ajax_filter_photos', 'filter_photos');
 add_action('wp_ajax_nopriv_filter_photos', 'filter_photos');
 
 // Conectar o js ao WP
-function enqueue_custom_scripts() {
-    // Enfileira o jQuery (se já não estiver carregado)
-    wp_enqueue_script('jquery');
+function enqueue_custom_scripts()
+{
+	// Enfileira o jQuery (se já não estiver carregado)
+	wp_enqueue_script('jquery');
 
-    // Enfileira o arquivo filters.js
-    wp_enqueue_script('filters-js', get_template_directory_uri() . '/js/filters.js', array('jquery'), null, true);
+	// Enfileira o arquivo filters.js
+	wp_enqueue_script('filters-js', get_template_directory_uri() . '/js/filters.js', array('jquery'), null, true);
 
-    // Passa a URL do admin-ajax.php e o nonce para o script
-    wp_localize_script('filters-js', 'ajax_object', array(
-        'ajaxurl' => admin_url('admin-ajax.php'),
-        'nonce' => wp_create_nonce('nathalie_mota_nonce')
-    ));
+	// Passa a URL do admin-ajax.php e o nonce para o script
+	wp_localize_script('filters-js', 'ajax_object', array(
+		'ajaxurl' => admin_url('admin-ajax.php'),
+		'nonce' => wp_create_nonce('nathalie_mota_nonce')
+	));
 }
 add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');
-

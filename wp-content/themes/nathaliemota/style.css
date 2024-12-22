@@ -1257,6 +1257,11 @@ textarea {
   display: flex; /* Permite que a imagem se ajuste dentro do contêiner */
   justify-content: center;
   align-items: center;
+  width: 564px;
+  height: 495px;
+}
+.photo-item a{
+  text-decoration: none;
 }
 
 .gallery-image {
@@ -1361,3 +1366,96 @@ textarea {
   bottom: -14px;
   left: 150px;
 }
+
+.photo-item {
+  position: relative;
+}
+
+.image-container {
+  position: relative;
+  display: inline-block;
+}
+
+.gallery-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: url(/wp-content/themes/nathaliemota/assets/img/icon_fullscreen.svg);
+}
+
+.icon-overlay {
+  position: absolute;
+  top: 10px; /* Posicione o ícone no canto superior direito */
+  right: 10px;
+  width: 24px; /* Ajuste conforme necessário */
+  height: auto;
+  pointer-events: none; /* Evita interferência no clique */
+}
+
+.icon-overlay svg {
+  width: 100%; /* Garante que o SVG respeite o tamanho do contêiner */
+  height: 100%;
+}
+
+.photo-lightbox::after{
+  content: ;
+  background: url(/wp-content/themes/nathaliemota/assets/img/icon_fullscreen.png);
+}
+
+.single__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0.9);
+  transition: 0.5s ease;
+  transition: 0.5s ease;
+  display: flex;
+  opacity: 0;
+}
+.single__overlay:hover {
+  opacity: 0.5;
+  color: white;
+}
+
+.single__overlay-fullscreen {
+  width: 34px !important;
+  height: 34px !important;
+  top: 2%;
+  left: 92%;
+  position: absolute;
+  cursor: pointer;
+}
+.single__overlay-eye img {
+  width: 46px;
+  height: 31px;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+}
+
+.single__caption {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-bottom: 15px;
+}
+.single__overlay-categorie,
+.single__overlay-title {
+  font-weight: 400;
+  font-size: 14px;
+}
+.single__overlay-categorie:hover,
+.single__overlay-title:hover,
+.single__overlay-eye:hover {
+  opacity: 1;
+  color: white;
+}
+.
