@@ -13,7 +13,7 @@
         </span>
         <span class="single__overlay-eye">
             <a href="<?php echo get_post_permalink(); ?>">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon_eye.png" alt="Icône oeil ouvert" />
+                <img  class="single__overlay-eye" src="<?php echo get_template_directory_uri(); ?>/assets/img/icon_eye.png" alt="Icône oeil ouvert" />
 
             </a>
         </span>
