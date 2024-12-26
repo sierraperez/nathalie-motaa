@@ -8,7 +8,7 @@
             class="gallery-image">
     </a>
     <div class="single__overlay">
-        <span>
+        <span class="span_fullscreen">
             <img class="single__overlay-fullscreen" src="<?php echo get_template_directory_uri(); ?>/assets/img/icon_fullscreen.png" alt="Icône plein écran" />
         </span>
         <span class="single__overlay-eye">
