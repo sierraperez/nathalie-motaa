@@ -54,42 +54,50 @@ get_header();
                         data-photo-ref="<?php echo esc_attr($post_reference); ?>">Contact
                     </button>
                 </div>
-                <div class="photo-info-nav-block">
-                    <div class="navigation-thumbnails">
-                        <?php if ($prev_post) : ?>
-                            <!-- Miniatura do Post Anterior -->
-                            <div class="prev-post-thumbnail">
-                                <a href="<?php echo get_permalink($prev_post->ID); ?>">
-                                    <img src="<?php echo get_the_post_thumbnail_url($prev_post->ID, 'thumbnail'); ?>" alt="<?php echo get_the_title($prev_post->ID); ?>">
-                                </a>
-                            </div>
-                        <?php endif; ?>
-
-                        <?php if ($next_post) : ?>
-                            <!-- Miniatura do Post Seguinte -->
-                            <div class="next-post-thumbnail">
-                                <a href="<?php echo get_permalink($next_post->ID); ?>">
-                                    <img src="<?php echo get_the_post_thumbnail_url($next_post->ID, 'thumbnail'); ?>" alt="<?php echo get_the_title($next_post->ID); ?>">
-                                </a>
-                            </div>
-                        <?php endif; ?>
-                    </div>
-
-                    <!-- Setas de Navegação -->
-                    <div class="navigation-arrows">
-                        <?php if ($prev_post) : ?>
-                            <a href="<?php echo get_permalink($prev_post->ID); ?>" class="nav-link prev-link">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/prev-arrow.png" alt="Previous">
-                            </a>
-                        <?php endif; ?>
-
-                        <?php if ($next_post) : ?>
-                            <a href="<?php echo get_permalink($next_post->ID); ?>" class="nav-link next-link">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/next-arrow.png" alt="Next">
-                            </a>
-                        <?php endif; ?>
-                    </div>
-                </div>
+                <div class="bloc-photo-miniature">
+					<div class="photo-miniature__fleche">
+						<div>
+							<?php
+							$previous_post = get_previous_post();
+							if ($previous_post) {
+								$prev_title = strip_tags(str_replace('"', '', $previous_post->post_title));
+								$prev_id = $previous_post->ID;
+								echo '<a href="' . get_permalink($prev_id) . '" title="' . $prev_title . '" class="prev-link">';
+								if (has_post_thumbnail($prev_id)) {
+							?>
+									<div class="photo-miniature-gauche">
+										<?php echo get_the_post_thumbnail($prev_id, array(81, 71)); ?>
+									</div>
+							<?php
+								} else {
+									echo '<img src="' . get_template_directory_uri() . '/assets/img/no-image.jpeg" alt="Pas de photo" width="77px"><br>';
+								}
+								echo '<img src="' . get_template_directory_uri() . '/assets/img/precedent.png" alt="Photo précédente"></a>';
+							}
+							?>
+						</div>
+						<div>
+							<?php
+							$next_post = get_next_post();
+							if ($next_post) {
+								$next_title = strip_tags(str_replace('"', '', $next_post->post_title));
+								$next_id = $next_post->ID;
+								echo '<a href="' . get_permalink($next_id) . '" title="' . $next_title . '" class="next-link">';
+								if (has_post_thumbnail($next_id)) {
+							?>
+									<div class="photo-miniature-droite">
+										<?php echo get_the_post_thumbnail($next_id, array(81, 71)); ?>
+									</div>
+							<?php
+								} else {
+									echo '<img src="' . get_template_directory_uri() . '/assets/img/no-image.jpeg" alt="Pas de photo" width="77px"><br>';
+								}
+								echo '<img src="' . get_template_directory_uri() . '/assets/img/suivant.png" alt="Photo suivante"></a>';
+							}
+							?>
+						</div>
+					</div>
+				</div>
             </div>
 
 

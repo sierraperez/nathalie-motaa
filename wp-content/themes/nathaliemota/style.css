@@ -1133,13 +1133,70 @@ textarea {
   align-items: flex-end;
   position: relative;
 }
-.navigation-thumbnails img {
-  width: 85px;
-  height: 76px;
+/* Configuração inicial */
+/* Section des photos miniatures qui apparaissent au survol des flèches */
+.bloc-photo-miniature {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-end;
+  width: 7%;
+  position: relative;
+}
+
+div.arrow {
+  position: relative;
+  top: 80px;
+  background: yellow;
+  height: auto;
+  cursor: pointer;
+  padding: 6px;
+}
+
+.photo-miniature__fleche {
+  display: flex;
+  justify-content: space-between;
+  width: 100px;
+  position: relative;
+  top: 40px;
+  left: 25px;
+}
+.photo-miniature-gauche,
+.photo-miniature-droite {
   position: absolute;
-  bottom: 30px;
-  left: 216px;
-  transition: all 5.5s ease;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+  width: 100%;
+  text-align: center;
+}
+
+.prev-link:hover .photo-miniature-gauche,
+.next-link:hover .photo-miniature-droite {
+  display: block;
+}
+
+.prev-link img,
+.next-link img {
+  display: block;
+  margin: 0 auto;
+  margin-right: 25px;
+  
+  
+  
+}
+
+.photo-miniature .thumbnail {
+  display: none;
+  width: 100px;
+  height: 100px;
+}
+.photo-miniature__fleche:hover ~ .photo-miniature .thumbnail {
+  display: block;
+  position: relative;
+  bottom: 78px;
+  
 }
 
 .sugestion {
@@ -1257,6 +1314,7 @@ textarea {
 .filters {
   border: #000 1px solid;
 }
+
 
 
 

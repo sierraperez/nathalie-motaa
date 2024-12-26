@@ -5,14 +5,18 @@ $(document).ready(function () {
   // Abrir o popup ao clicar no botão de contato
   $(".btn-contact, #contactBtn").on("click", function () {
     // Verifique se o elemento .reference_value existe e tem valor
-    const reference_value = $(".reference_value").length ? $(".reference_value").text() : "";
+    const reference_value = $(".reference_value").length
+      ? $(".reference_value").text()
+      : "";
 
     // Se houver valor de referência, preencha o campo no formulário
     if (reference_value) {
-      $("#ref_photo").val(reference_value);  // Preenche o campo ref_photo com a referência
+      $("#ref_photo").val(reference_value); // Preenche o campo ref_photo com a referência
       console.log("Referência preenchida no formulário:", reference_value);
     } else {
-      console.warn("Nenhum valor de referência encontrado. Campo ref_photo não preenchido.");
+      console.warn(
+        "Nenhum valor de referência encontrado. Campo ref_photo não preenchido."
+      );
     }
 
     // Exibe o popup
@@ -32,13 +36,7 @@ $(document).ready(function () {
   });
 });
 
-
-
-
-
-
-
- // Selecionar elementos
+// Selecionar elementos
 const lightbox = document.getElementById("photo-lightbox");
 const closeLightbox = document.querySelector(".close-lightbox");
 const lightboxImage = document.querySelector(".lightbox-image");
@@ -89,3 +87,6 @@ lightbox.addEventListener("click", (e) => {
     lightbox.style.display = "none";
   }
 });
+
+
+
