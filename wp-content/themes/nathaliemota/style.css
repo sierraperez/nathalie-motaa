@@ -984,7 +984,7 @@ textarea {
   top: 0;
   left: 0;
 }
-.popup-header-img{
+.popup-header-img {
   position: relative;
 }
 .popup-salon {
@@ -1323,11 +1323,52 @@ div.arrow {
   object-fit: cover; /* Mantém a proporção e cobre o contêiner */
 }
 
-/* Filtres images  */
-.filter-area {
-  padding: 80px;
-  align-items: ;
+.filters-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 92px 0px 45px 221px;
+  height: fit-content;
+  transition: margin 0.5s;
 }
-.filters {
-  border: #000 1px solid;
+
+.filter-left {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 40%;
+}
+
+.filter-right {
+  display: flex;
+  justify-content: center;
+  width: 51%;
+}
+
+.filter-wrapper {
+  position: relative;
+  width: fit-content;
+  margin-bottom: 15px;
+}
+
+.photo-filter {
+  width: 260px;
+  height: 40px;
+  padding-left: 20px;
+  background-color: transparent;
+  border: 1px solid #b0b0b0;
+  border-radius: 10px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  text-transform: uppercase; /* Aplica uppercase em todos os textos */
+}
+
+
+
+
+/* Estilo para o filtro com seleção */
+.photo-filter option:checked {
+  background-color: red !important; /* Fundo vermelho quando a opção for selecionada */
+  color: white !important; /* Cor do texto branca para a opção selecionada */
 }

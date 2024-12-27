@@ -63,9 +63,7 @@ get_header();
         </div>
         <p class="lightbox-caption"></p> <!-- Legenda agora ficará abaixo -->
     </div>
-
 </main>
-
 <?php
 get_footer();
 ?>
