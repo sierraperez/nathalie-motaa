@@ -971,7 +971,7 @@ textarea {
   margin-right: auto;
   margin-bottom: 1.5em;
 }
-/*Part pop-up*/
+/*popup*/
 .popup-overlay {
   position: fixed;
   width: 100%;
@@ -984,6 +984,9 @@ textarea {
   top: 0;
   left: 0;
 }
+.popup-header-img{
+  position: relative;
+}
 .popup-salon {
   background: white;
   border-radius: 20px;
@@ -991,7 +994,26 @@ textarea {
   padding: 30px;
   position: relative;
 }
-
+.popup-address p {
+  margin: 0;
+  font-size: 12px;
+}
+.popup-details {
+  display: flex;
+  width: 100%;
+  margin-top: 10px;
+}
+.popup-details > div {
+  flex: 1;
+}
+.popup-link {
+  color: #28babf;
+  text-decoration: underline;
+}
+.popup-link:hover {
+  color: #2377a8;
+  text-decoration: underline;
+}
 .popup-btn,
 .popup-salon .wpcf7-submit {
   display: inline-block;
@@ -1040,7 +1062,6 @@ textarea {
   margin-bottom: 10px;
   border-bottom: 1px solid #28babf;
 }
-
 /* Setas de mineatura */
 .navigation-thumbnails {
   display: flex;

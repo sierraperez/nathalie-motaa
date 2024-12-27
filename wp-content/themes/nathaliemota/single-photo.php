@@ -99,24 +99,6 @@ get_header();
 					</div>
 				</div>
             </div>
-
-
-
-
-
-
-            <!-- Popup (inicialmente oculta) -->
-            <div class="popup-overlay" id="contactPopup" style="display:none;">
-                <div class="popup-salon">
-                    <div class="popup-header">
-                        <span class="popup-close" id="closePopup"><i class="fa fa-times"></i></span>
-                    </div>
-                    <?php
-                    // Exibe o formulário de contato
-                    echo do_shortcode('[contact-form-7 id="ref_id" title="Contact form"]');
-                    ?>
-                </div>
-            </div>
         </div>
 
     <?php
