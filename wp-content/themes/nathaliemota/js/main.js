@@ -90,3 +90,47 @@ lightbox.addEventListener("click", (e) => {
 
 
 
+document.addEventListener("DOMContentLoaded", function () {
+  // Selecionar todos os dropdowns
+  const dropdowns = document.querySelectorAll(".custom-dropdown");
+
+  dropdowns.forEach(dropdown => {
+      const selected = dropdown.querySelector(".dropdown-selected");
+      const options = dropdown.querySelector(".dropdown-options");
+      const optionItems = dropdown.querySelectorAll(".dropdown-option");
+      const hiddenInput = dropdown.querySelector("input[type='hidden']");
+
+      // Abrir e fechar o menu
+      selected.addEventListener("click", () => {
+          options.style.display = options.style.display === "block" ? "none" : "block";
+      });
+
+      // Selecionar uma opção
+      optionItems.forEach(option => {
+          option.addEventListener("click", () => {
+              // Atualiza o texto selecionado
+              selected.textContent = option.textContent;
+
+              // Marca a opção como selecionada
+              optionItems.forEach(item => item.classList.remove("selected"));
+              option.classList.add("selected");
+
+              // Fecha o menu
+              options.style.display = "none";
+
+              // Atualiza o valor oculto
+              hiddenInput.value = option.getAttribute("data-value");
+          });
+      });
+  });
+
+  // Fechar o menu ao clicar fora do dropdown
+  document.addEventListener("click", (event) => {
+      dropdowns.forEach(dropdown => {
+          const options = dropdown.querySelector(".dropdown-options");
+          if (!dropdown.contains(event.target)) {
+              options.style.display = "none";
+          }
+      });
+  });
+});

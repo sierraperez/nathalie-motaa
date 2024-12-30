@@ -1,0 +1,37 @@
+/****** RESPONSIVE DESIGN *****/
+
+@media (min-width: 769px) and (max-width: 991px) {
+  .modal-content {
+    width: 70%;
+  }
+  
+  /* Navigation */
+  .site-branding a {
+    margin-left: 55px;
+  }
+  .main-navigation {
+    margin-right: -40px;
+  }
+
+  /* Banner */
+  .img {
+    max-height: 500px;
+    width: auto;
+  }
+  .hero-header__page-title {
+    font-size: 70px;
+    line-height: 90px;
+  }
+}
+
+ 
+
+@media (min-width: 576px) and (max-width: 768px) {
+
+}
+  
+
+@media (min-width: 375px) and (max-width: 575px) {
+
+}
+  

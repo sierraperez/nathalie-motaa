@@ -71,6 +71,7 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+
 /* Sections
 	 ========================================================================== */
 
@@ -78,8 +79,8 @@ html {
  * Remove the margin in all browsers.
  */
 body {
-  max-width: 100%;
-  margin: 0 auto;
+  margin: auto;
+  overflow: scroll;
 }
 
 /**
@@ -1304,13 +1305,13 @@ div.arrow {
 }
 
 .galerie-photo {
-  margin: 0 auto; /* Centraliza a galeria na página */
-  white-space: break-spaces;
-  white-space-collapse: break-spaces;
   display: flex;
-  text-align: center;
   flex-wrap: wrap;
+  margin: auto;
   justify-content: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  gap: 10px;
   grid-template-columns: repeat(
     auto-fill,
     minmax(200px, 1fr)
@@ -1364,11 +1365,104 @@ div.arrow {
   text-transform: uppercase; /* Aplica uppercase em todos os textos */
 }
 
+/* Container principal */
+.filters-container {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 100px;
+  margin: auto;
+  width: 98%;
+}
 
+/* Estilização do dropdown */
+.custom-dropdown {
+  position: relative;
+  width: 260px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  text-align: left;
+}
 
+/* Botão selecionado */
+.dropdown-selected {
+  border: 1.3px solid #b8bbc2;
+  border-radius: 8px;
+  height: 42px;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  background-color: white;
+  line-height: 38px;
+}
 
-/* Estilo para o filtro com seleção */
-.photo-filter option:checked {
-  background-color: red !important; /* Fundo vermelho quando a opção for selecionada */
-  color: white !important; /* Cor do texto branca para a opção selecionada */
+/* Setinha para indicar que é um dropdown */
+.dropdown-selected::after {
+  content: "▼";
+  font-size: 12px;
+  color: #b8bbc2;
+  margin-left: 8px;
+}
+
+/* Estilização das opções */
+.dropdown-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: white;
+  border: 1.3px solid #b8bbc2;
+  border-radius: 0 0 8px 8px;
+  display: none; /* Inicialmente escondido */
+  z-index: 1000;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+/* Cada opção */
+.dropdown-option {
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Cor para a primeira opção */
+.dropdown-option:first-child {
+  background-color: white;
+  color: red;
+}
+
+/* Estilo para a opção selecionada */
+.dropdown-option.selected {
+  background-color: var(--Color-Pressing, #f0f0f0);
+  color: black;
+}
+
+/* Opção com hover */
+.dropdown-option:hover {
+  background-color: var(--Color-hover, rgb(255, 125, 125));
+  color: rgb(0, 0, 0);
+}
+
+/* Opção selecionada e hover */
+.dropdown-option.selected:hover {
+  background-color: var(--Color-Selected, #d32f2f);
+  color: black;
+}
+
+/* Dropdown ativo (quando aberto) */
+.custom-dropdown.active .dropdown-options {
+  display: block;
+}
+
+/* Ajustes para responsividade */
+@media (max-width: 836px) {
+  .filters-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .custom-dropdown {
+    width: 100%;
+  }
 }
