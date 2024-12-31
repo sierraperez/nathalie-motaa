@@ -14,7 +14,7 @@
 	width: 100%;
 	height: 80px;
 	box-shadow: 0 1px 20px 1px rgba(0, 0, 0, 0.05);
-    padding: 0 150px;
+    padding: 0 50px;
 }
 
 /* Estilizando o logotipo */
@@ -74,23 +74,6 @@
 /* Estilo para o botão de menu (para dispositivos móveis) */
 .menu-toggle {
     display: none; /* Oculta o botão de menu em dispositivos grandes */
-}
-
-/* Ajustes para dispositivos móveis */
-@media (max-width: 768px) {
-    .site-header {
-        flex-direction: column; /* Empilha logotipo e menu em dispositivos móveis */
-        align-items: flex-start; /* Alinha ao início (esquerda) */
-    }
-
-    .main-navigation {
-        width: 100%; /* Faz o menu ocupar toda a largura disponível em dispositivos móveis */
-        margin-left: 0; /* Remove o margem à esquerda em dispositivos móveis */
-    }
-
-    .menu-toggle {
-        display: block; /* Mostra o botão de menu em dispositivos móveis */
-    }
 }
 
 .hero-header {

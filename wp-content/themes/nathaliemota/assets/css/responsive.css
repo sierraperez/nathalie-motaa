@@ -4,13 +4,19 @@
   .modal-content {
     width: 70%;
   }
-  
+
   /* Navigation */
   .site-branding a {
     margin-left: 55px;
   }
   .main-navigation {
     margin-right: -40px;
+  }
+  .site-header {
+    padding: 0px 150px 0px 0px;
+  }
+  .site-branding{
+    width: 100%;
   }
 
   /* Banner */
@@ -21,17 +27,45 @@
   .hero-header__page-title {
     font-size: 70px;
     line-height: 90px;
+    top: 300px;
+  }
+
+}
+
+
+@media (min-width: 576px) and (max-width: 768px) {
+  .site-header {
+  }
+  .site-branding {
+    width: 100%;
+  }
+  .main-navigation {
+    width: 100%; /* Faz o menu ocupar toda a largura disponível em dispositivos móveis */
+    margin-left: 0; /* Remove o margem à esquerda em dispositivos móveis */
+  }
+
+  .menu-toggle {
+    display: block; /* Mostra o botão de menu em dispositivos móveis */
+  }
+  .hero-header__page-title{
+    top: 35%;
+    font-size: 60px;
+
+  }
+  
+  .main-navigation ul {
+    display: none;
+  }
+  .menu-toggle {
+    display: block;
   }
 }
 
- 
-
-@media (min-width: 576px) and (max-width: 768px) {
-
-}
-  
-
 @media (min-width: 375px) and (max-width: 575px) {
-
+  .main-navigation ul {
+    display: none;
+  }
+  .menu-toggle {
+    display: block;
+  }
 }
-  
