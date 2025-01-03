@@ -1,5 +1,5 @@
 <div class="filters-container">
-    <div class="filter-left center">
+    <div class="filter-left ">
         <!-- Filtro Categoria -->
         <div class="filter-wrapper">
             <div class="custom-dropdown">
@@ -18,7 +18,7 @@
             </div>
         </div>
     </div>
-    <div class="filter-midle center">
+    <div class="filter-midle">
         <!-- Filtro Formato -->
         <div class="filter-wrapper">
             <div class="custom-dropdown">
@@ -38,7 +38,7 @@
         </div>
     </div>
 
-    <div class="filter-right center">
+    <div class="filter-right ">
         <!-- Filtro Trier Par -->
         <div class="filter-wrapper">
             <div class="custom-dropdown">

@@ -1,12 +1,7 @@
 /****** RESPONSIVE DESIGN *****/
 
-@media (min-width: 1137px) {
-  .hero-header__page-title {
-    top: 35%;
-  }
-}
 
-@media (min-width: 769px) and (max-width: 991px) {
+@media (min-width: 768px) and (max-width: 1137px) {
   .modal-content {
     width: 70%;
   }
@@ -36,9 +31,7 @@
     top: 300px;
   }
   /* filtres*/
-  .center {
-    align-items: center;
-  }
+ 
   .filters-container {
     place-content: center;
   }
@@ -76,9 +69,7 @@
     display: block;
   }
   /* filtres*/
-  .center {
-    align-items: center;
-  }
+  
   .filters-container {
     place-content: center;
     align-items: center;
@@ -203,6 +194,9 @@
     transform: rotate(90deg);
     top: 0;
   }
+  .galerie-photo{
+    margin-top: 0px;
+  }
 }
 
 @media (min-width: 300px) and (max-width: 531px) {
@@ -218,7 +212,7 @@
 
   /* Título da Página */
   .hero-header__page-title {
-    top: 30%;
+    top: 28%;
     font-size: 40px; /* Diminua o tamanho do texto */
     text-align: center; /* Centralize o título */
     padding: 0 10px; /* Adicione espaçamento para evitar bordas */
@@ -238,6 +232,11 @@
     min-width: 150px; /* Limite mínimo para evitar que fique muito pequeno */
     margin: 0 auto; /* Centraliza o elemento horizontalmente */
   }
+ /* Gallerie*/
+  .galerie-photo {
+    gap: 20px;
+    padding: 0px 20px 0px 20px;
+  }
 
   /* Rodapé */
   .menu-footer-menu-container ul {
@@ -245,9 +244,9 @@
     flex-direction: column;
     align-items: center;
     gap: 5px; /* Adicione espaçamento entre os itens */
+    padding: 0px;
   }
   .menu-footer-menu-container ul li {
     font-size: 14px; /* Reduza o tamanho do texto */
   }
-  
 }
