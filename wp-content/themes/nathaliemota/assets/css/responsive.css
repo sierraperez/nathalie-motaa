@@ -19,6 +19,7 @@
   .site-branding {
     width: 100%;
   }
+  
 
   /* Banner */
   .img {
@@ -56,6 +57,20 @@
   .menu-toggle {
     display: block; /* Mostra o botão de menu em dispositivos móveis */
   }
+  .main-navigation.toggled ul {
+    display: block;
+    background-color: #dc3232;
+    z-index: 11111111111111111111111111;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    align-content: center;
+    font-size: 44px;
+    color: white;
+    top: 0;
+    left: 0;
+    position: fixed;
+}
   .hero-header__page-title {
     top: 29%;
 

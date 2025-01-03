@@ -20,7 +20,7 @@ get_header();
         <div class="photo-info-container">
             <div class="photo-container">
                 <div class="photo-info-left">
-                    <h1><?php the_title(); ?></h1>
+                    <h2><?php the_title(); ?></h2>
                     <p><?php the_content(); ?></p>
                     <p>REFERENCE : <span class="reference_value"><?php echo get_field("reference"); ?></span></p>
                     <p>CATEGORIE : <?php echo strip_tags(get_the_term_list($post->ID, 'categorie')); ?></p>

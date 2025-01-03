@@ -422,12 +422,11 @@ h6 {
 }
 
 p {
-  margin-bottom: 1.5em;
-  font-size: 14px;
-  line-height: 15px;
+  line-height: 5px;
   text-transform: uppercase;
   font-family: monospace;
   color: #000000;
+  letter-spacing: 10%;
 }
 
 dfn,
@@ -1075,7 +1074,7 @@ textarea {
 /* Apenas container da foto e descricao da referencia etc  */
 .photo-container {
   display: flex;
-  margin: 2em 9vw 0;
+  margin: 2em 10vw 0;
   justify-content: center;
 }
 .photo-info-left {
@@ -1115,7 +1114,7 @@ textarea {
   height: 118px;
   box-sizing: border-box;
   align-items: center;
-  margin: 10px 9vw;
+  margin: 10px 10vw;
   justify-content: space-between;
   border-bottom: #000 1px solid;
 }
@@ -1220,14 +1219,20 @@ div.arrow {
 }
 
 /* Button charger plus page accueil */
-.aime {
-  text-align: left;
+h3 {
+  font-family: "Space Mono", monospace;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  color: #000000;
+  line-height: normal;
   max-width: 1440px;
-  margin: 50px 9vw;
+  margin: 50px 10vw;
+  letter-spacing: 1.8px;
+  color: #000000;
+  text-transform: uppercase;
 }
-.aime p {
-  color: firebrick;
-}
+
 #load-more {
   display: block;
   margin: 20px auto;
@@ -1348,7 +1353,7 @@ div.arrow {
 
 /* Container principal */
 .filters-container {
-  margin: 2vw 9vw;
+  margin: 2vw 10vw;
   display: flex;
   width: 80vw;
   transition: margin 0.5s;

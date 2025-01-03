@@ -104,6 +104,17 @@
     transform: translate(-50%, -50%);
     text-align: center;
 }
+h2{
+    font-family: "Space Mono", monospace !important;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 66px;
+    line-height: 58px;
+    text-transform: uppercase;
+    max-width: 350px;
+    margin: 0px;
+    
+}
 
 
 /* Styles | Contact Form 7 */
