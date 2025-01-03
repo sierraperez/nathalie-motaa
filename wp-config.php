@@ -79,30 +79,6 @@ $table_prefix = 'wp_';
  *
  * @link https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/
  */
-<<<<<<< HEAD
-=======
 define( 'WP_DEBUG', false );
->>>>>>> 77b9d1e36f701a5d43afe5b872592c91e74ec2f6
-
-/* Add any custom values between this line and the "stop editing" line. */
-
-
-<<<<<<< HEAD
-define('WP_DEBUG', true);
-define('WP_DEBUG_LOG', true);
-define('WP_DEBUG_DISPLAY', false);
-@ini_set('display_errors', 0);
-=======
->>>>>>> 77b9d1e36f701a5d43afe5b872592c91e74ec2f6
-
-/* That's all, stop editing! Happy publishing. */
-
-/** Absolute path to the WordPress directory. */
-if ( ! defined( 'ABSPATH' ) ) {
-	define( 'ABSPATH', __DIR__ . '/' );
-}
-
-/** Sets up WordPress vars and included files. */
-require_once ABSPATH . 'wp-settings.php';
 
 
