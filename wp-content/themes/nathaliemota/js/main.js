@@ -134,3 +134,16 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+  const toggleButton = document.querySelector('.menu-toggle');
+  const menu = document.querySelector('#primary-menu');
+
+  if (toggleButton && menu) {
+      toggleButton.addEventListener('click', function () {
+          const expanded = toggleButton.getAttribute('aria-expanded') === 'true' || false;
+          toggleButton.setAttribute('aria-expanded', !expanded);
+          menu.classList.toggle('menu-active');
+      });
+  }
+});

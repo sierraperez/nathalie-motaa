@@ -41,16 +41,21 @@
 			</div><!-- .site-branding -->
 
 			<nav id="site-navigation" class="main-navigation">
-				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e('Primary Menu', 'nathaliemota'); ?></button>
+				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+					<span class="hamburger-icon" aria-hidden="true"></span>
+					<span class="screen-reader-text"><?php esc_html_e('Toggle Navigation', 'nathaliemota'); ?></span>
+				</button>
 				<?php
 				wp_nav_menu(
 					array(
 						'theme_location' => 'menu-1',
 						'menu_id'        => 'primary-menu',
+						'menu_class'     => 'menu-top',
 					)
 				);
 				?>
-			</nav><!-- #site-navigation -->
+			</nav>
+
 			<!-- Debut du modal de Contact -->
 			<div class="popup-overlay">
 				<div class="popup-salon">
