@@ -1,5 +1,9 @@
 <div class="filters-container">
+<<<<<<< HEAD
     <div class="filter-left center">
+=======
+    <div class="filter-left">
+>>>>>>> 77b9d1e36f701a5d43afe5b872592c91e74ec2f6
         <!-- Filtro Categoria -->
         <div class="filter-wrapper">
             <div class="custom-dropdown">
@@ -17,8 +21,12 @@
                 <input type="hidden" id="categorie_id" name="categorie_id" value="">
             </div>
         </div>
+<<<<<<< HEAD
     </div>
     <div class="filter-midle center">
+=======
+
+>>>>>>> 77b9d1e36f701a5d43afe5b872592c91e74ec2f6
         <!-- Filtro Formato -->
         <div class="filter-wrapper">
             <div class="custom-dropdown">
@@ -38,7 +46,11 @@
         </div>
     </div>
 
+<<<<<<< HEAD
     <div class="filter-right center">
+=======
+    <div class="filter-right">
+>>>>>>> 77b9d1e36f701a5d43afe5b872592c91e74ec2f6
         <!-- Filtro Trier Par -->
         <div class="filter-wrapper">
             <div class="custom-dropdown">

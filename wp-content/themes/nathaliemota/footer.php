@@ -24,11 +24,14 @@
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->
+<<<<<<< HEAD
 <script>
     jQuery(document).ready(function($) {
         $('select.select2').select2();
     });
 </script>
+=======
+>>>>>>> 77b9d1e36f701a5d43afe5b872592c91e74ec2f6
 
 <?php wp_footer(); ?>
 

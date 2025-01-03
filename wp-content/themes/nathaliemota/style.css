@@ -71,6 +71,10 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 77b9d1e36f701a5d43afe5b872592c91e74ec2f6
 /* Sections
 	 ========================================================================== */
 
@@ -712,6 +716,10 @@ textarea {
   display: block;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 77b9d1e36f701a5d43afe5b872592c91e74ec2f6
 .site-main .comment-navigation,
 .site-main .posts-navigation,
 .site-main .post-navigation {
@@ -1313,21 +1321,42 @@ div.arrow {
   object-fit: cover; /* Mantém a proporção e cobre o contêiner */
 }
 
+<<<<<<< HEAD
 .filter-left {
   display: flex;
   width: 40%;
   gap: 5px;
   margin-right: 5px;
+=======
+.filters-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 92px 0px 45px 221px;
+  height: fit-content;
+  transition: margin 0.5s;
+}
+
+.filter-left {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 40%;
+>>>>>>> 77b9d1e36f701a5d43afe5b872592c91e74ec2f6
 }
 
 .filter-right {
   display: flex;
   justify-content: center;
+<<<<<<< HEAD
   width: 71%;
 }
 .filter-midle{
   
   margin-right: 5px;
+=======
+  width: 51%;
+>>>>>>> 77b9d1e36f701a5d43afe5b872592c91e74ec2f6
 }
 
 .filter-wrapper {
@@ -1336,7 +1365,10 @@ div.arrow {
   margin-bottom: 15px;
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 77b9d1e36f701a5d43afe5b872592c91e74ec2f6
 .photo-filter {
   width: 260px;
   height: 40px;
@@ -1352,11 +1384,19 @@ div.arrow {
 
 /* Container principal */
 .filters-container {
+<<<<<<< HEAD
   margin: 2vw 9vw;
   display: flex;
   width: 80vw;
   transition: margin 0.5s;
   place-content: center;
+=======
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 100px;
+  margin: auto;
+  width: 98%;
+>>>>>>> 77b9d1e36f701a5d43afe5b872592c91e74ec2f6
 }
 
 /* Estilização do dropdown */
@@ -1420,7 +1460,11 @@ div.arrow {
 
 /* Estilo para a opção selecionada */
 .dropdown-option.selected {
+<<<<<<< HEAD
   background-color: var(--Color-Selected, #d32f2f);
+=======
+  background-color: var(--Color-Pressing, #f0f0f0);
+>>>>>>> 77b9d1e36f701a5d43afe5b872592c91e74ec2f6
   color: black;
 }
 
@@ -1441,3 +1485,16 @@ div.arrow {
   display: block;
 }
 
+<<<<<<< HEAD
+=======
+/* Ajustes para responsividade */
+@media (max-width: 836px) {
+  .filters-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .custom-dropdown {
+    width: 100%;
+  }
+}
+>>>>>>> 77b9d1e36f701a5d43afe5b872592c91e74ec2f6

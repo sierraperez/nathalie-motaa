@@ -313,6 +313,7 @@ add_action('wp_ajax_nopriv_load_more_photos_by_category', 'load_more_photos_by_c
 // FILTRAGEM de fotos de galeria principal 
 
 // Função para filtrar as fotos via AJAX
+<<<<<<< HEAD
 // Adiciona suporte ao AJAX para o filtro de fotos
 function enqueue_photo_filter_scripts() {
     // Registra e enfileira o script de filtro
@@ -398,6 +399,73 @@ add_action('wp_ajax_nopriv_filter_photos', 'filter_photos');
 
 
 
+=======
+function filter_photos()
+{
+	// Verifica se o nonce é válido
+	if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'nathalie_mota_nonce')) {
+		wp_send_json_error('Nonce inválido.');
+		return;
+	}
+
+	// Obtém os dados do filtro
+	$categorie = isset($_POST['categorie']) ? intval($_POST['categorie']) : '';
+	$format = isset($_POST['format']) ? intval($_POST['format']) : '';
+	$order = isset($_POST['order']) ? sanitize_text_field($_POST['order']) : 'DESC';
+
+	// Configuração da query para filtrar as fotos
+	$args = array(
+		'post_type' => 'photo', // Post type das fotos
+		'posts_per_page' => -1, // Retorna todas as fotos que correspondem aos filtros
+		'orderby' => 'date',
+		'order' => $order,
+	);
+
+	// Filtro por categoria
+	if ($categorie) {
+		$args['tax_query'][] = array(
+			'taxonomy' => 'categorie',
+			'field'    => 'term_id',
+			'terms'    => $categorie,
+		);
+	}
+
+	// Filtro por formato
+	if ($format) {
+		$args['tax_query'][] = array(
+			'taxonomy' => 'format',
+			'field'    => 'term_id',
+			'terms'    => $format,
+		);
+	}
+
+	// Realiza a consulta no banco de dados
+	$query = new WP_Query($args);
+
+	// Se houver fotos, gera o HTML para as imagens
+	if ($query->have_posts()) {
+		ob_start();
+		while ($query->have_posts()) {
+			$query->the_post();
+			get_template_part('template-parts/photo/one-photo'); // Renderiza cada imagem
+		}
+		wp_reset_postdata();
+		$output = ob_get_clean();
+		wp_send_json_success($output);
+	} else {
+		wp_send_json_success('<p>Nenhuma foto encontrada.</p>');
+	}
+
+	wp_die(); // Importante para finalizar corretamente a requisição AJAX
+}
+
+// Registra a ação AJAX para usuários logados
+add_action('wp_ajax_filter_photos', 'filter_photos');
+
+// Registra a ação AJAX para usuários não logados
+add_action('wp_ajax_nopriv_filter_photos', 'filter_photos');
+
+>>>>>>> 77b9d1e36f701a5d43afe5b872592c91e74ec2f6
 // Conectar o js ao WP
 function enqueue_custom_scripts()
 {
