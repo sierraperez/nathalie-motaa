@@ -422,11 +422,12 @@ h6 {
 }
 
 p {
-  line-height: 5px;
+  margin-bottom: 1.5em;
+  font-size: 14px;
+  line-height: 15px;
   text-transform: uppercase;
   font-family: monospace;
   color: #000000;
-  letter-spacing: 10%;
 }
 
 dfn,
@@ -1219,7 +1220,8 @@ div.arrow {
 }
 
 /* Button charger plus page accueil */
-h3 {
+
+.aime h3{
   font-family: "Space Mono", monospace;
   font-size: 14px;
   font-style: normal;
@@ -1364,9 +1366,12 @@ h3 {
 .custom-dropdown {
   position: relative;
   width: 260px;
-  font-family: Arial, sans-serif;
-  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-family: 'Poppins';
+  font-size: 16px;
   text-align: left;
+  line-height: 12px;
 }
 
 /* Botão selecionado */

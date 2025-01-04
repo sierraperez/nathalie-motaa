@@ -20,7 +20,7 @@ get_header();
         <div class="photo-info-container">
             <div class="photo-container">
                 <div class="photo-info-left">
-                    <h2><?php the_title(); ?></h2>
+                    <h2 class="single-photo_single"><?php the_title(); ?></h2>
                     <p><?php the_content(); ?></p>
                     <p>REFERENCE : <span class="reference_value"><?php echo get_field("reference"); ?></span></p>
                     <p>CATEGORIE : <?php echo strip_tags(get_the_term_list($post->ID, 'categorie')); ?></p>
@@ -105,7 +105,7 @@ get_header();
     endwhile; // End of the loop.
     ?>
     <div class="aime">
-        <h3> Vous aimerez AUSSI</h3>
+        <h3 > Vous aimerez AUSSI</h3>
     </div>
     <div class="sugestion" id="related-photos">
         <?php
