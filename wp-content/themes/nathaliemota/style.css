@@ -1385,7 +1385,7 @@ div.arrow {
   justify-content: space-between;
   cursor: pointer;
   background-color: white;
-  line-height: 38px;
+  line-height: 18px;
 }
 
 /* Setinha para indicar que é um dropdown */
@@ -1412,6 +1412,7 @@ div.arrow {
   z-index: 1000;
   max-height: 200px;
   overflow-y: auto;
+  text-transform: capitalize;
 }
 
 /* Cada opção */
@@ -1433,17 +1434,23 @@ div.arrow {
   color: black;
 }
 
+
 /* Opção com hover */
 .dropdown-option:hover {
-  background-color: var(--Color-hover, rgb(255, 125, 125));
+  background-color: #FFD6D6;
   color: rgb(0, 0, 0);
 }
 
 /* Opção selecionada e hover */
 .dropdown-option.selected:hover {
-  background-color: var(--Color-Selected, #d32f2f);
+  background-color: #E00000;
   color: black;
 }
+.dropdown-option.selected:active {
+  background-color: #FE5858;
+  color: black;
+}
+
 
 /* Dropdown ativo (quando aberto) */
 .custom-dropdown.active .dropdown-options {
