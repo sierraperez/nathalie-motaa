@@ -1276,7 +1276,7 @@ div.arrow {
 /*CSS OVERLAY*/
 
 .photo-item:hover img {
-  filter: brightness(0.4);
+  filter: brightness(0.7);
   /* Reduz o brilho para 70%, deixando a imagem mais escura */
   transition: filter 0.5s ease-in-out;
   /* Adiciona transição suave */
@@ -1413,6 +1413,7 @@ div.arrow {
   max-height: 200px;
   overflow-y: auto;
   text-transform: capitalize;
+  animation: dropdownIn 0.5s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
 }
 
 /* Cada opção */
@@ -1457,3 +1458,32 @@ div.arrow {
   display: block;
 }
 
+
+
+
+
+@keyframes dropdownIn {
+  from {
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+}
+
+@keyframes dropdownOut {
+  from {
+    opacity: 1;
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  to {
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+}
