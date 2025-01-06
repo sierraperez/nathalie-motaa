@@ -723,23 +723,7 @@ final class WP_Customize_Widgets {
 			__( 'Move up' )
 		);
 
-		$move_widget_area_tpl = str_replace(
-			array( '{description}', '{btn}' ),
-			array(
-				__( 'Select an area to move this widget into:' ),
-				_x( 'Move', 'Move widget' ),
-			),
-			'<div class="move-widget-area">
-				<p class="description">{description}</p>
-				<ul class="widget-area-select">
-					<% _.each( sidebars, function ( sidebar ){ %>
-						<li class="" data-id="<%- sidebar.id %>" title="<%- sidebar.description %>" tabindex="0"><%- sidebar.name %></li>
-					<% }); %>
-				</ul>
-				<div class="move-widget-actions">
-					<button class="move-widget-btn button" type="button">{btn}</button>
-				</div>
-			</div>'
+		
 		);
 
 		/*

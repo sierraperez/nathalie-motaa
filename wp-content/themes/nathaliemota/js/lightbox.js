@@ -134,7 +134,6 @@ console.log("lightbox");
 
 // Réinitialisation après chargement AJAX
 $( document ).on( "ajaxComplete", function() {
-    console.log("test");
     Lightbox.init()
  } );
 

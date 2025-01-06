@@ -58,7 +58,6 @@
     display: block; /* Mostra o botão de menu em dispositivos móveis */
   }
   .main-navigation.toggled ul {
-    display: block;
     background-color: #dc3232;
     z-index: 11111111111111111111111111;
     width: 100%;
@@ -67,9 +66,29 @@
     align-content: center;
     font-size: 44px;
     color: white;
-    top: 80px;
+    top: 0;
     left: 0;
     position: fixed;
+   
+    
+}
+.menu-toggle:after{
+  opacity: 0;
+  content: "×";
+  color: #FFFFFF;
+  position: absolute;
+  top: 16px;
+  left: -4px;
+  font-family: Arial, sans-serif;
+  font-size: 76px;
+  line-height: 0;
+  cursor: pointer;
+}
+.open .menu-toggle:after{
+  width: fit-content;
+  opacity: 1;
+  transform: translate3d(0, 0, 0) rotate(360deg);
+  transition: transform 0.4s ease-out, opacity 1s ease-out;
 }
 .main-navigation.toggled a{
   color: white;
@@ -157,10 +176,12 @@
     background-color: #fff;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     z-index: 10;
+   
   }
 
   .menu-active {
     display: flex; /* Exibe o menu quando ativado */
+    
   }
 
   .menu-toggle {
@@ -169,6 +190,7 @@
     border: none;
     cursor: pointer;
     padding: 10px;
+    overflow: hidden;
   }
 
   .hamburger-icon {
@@ -273,5 +295,10 @@
 body .open {
   display: none;
 
+}
+
+
+.menu-top .nav-menu{
+  background-color: black !important;
 }
 
