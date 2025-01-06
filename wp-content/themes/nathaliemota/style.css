@@ -1120,22 +1120,25 @@ textarea {
   border-bottom: #000 1px solid;
 }
 
-.photo-info-nav #contactBtn {
+#contactBtn {
   font-size: 14px;
   font-weight: 400;
-}
-.photo-info-nav #contactBtn {
-  font-size: 16px;
   font-family: "Space Mono";
   border: none;
   border-radius: 2px;
   cursor: pointer;
   width: 20vw;
-  height: 3vw;
+  height: 5vw;
   margin-right: 12vw;
   background-color: #d8d8d8;
-  transition: all 0.3s ease;
+  transition: all 1s;
 }
+
+#contactBtn:hover {
+  background-color: #000;
+  color: #fff;
+}
+
 .photo-info-nav-block {
   width: 21vw;
   height: 115px;
@@ -1236,15 +1239,21 @@ div.arrow {
 }
 
 #load-more {
+  background: none;
   display: block;
   margin: 20px auto;
-  padding: 25px 100px;
+  border: 2px solid #000;
+  /* padding: 25px 100px; */
   background-color: #d8d8d8;
-  color: #fff;
+  color: #000000;
   border: none;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px;
+  font-family: "Space Mono";
+  width: 20vw;
+  height: 5vw;
 }
+
 #load-more:hover {
   background-color: #000;
   color: #fff;
@@ -1388,14 +1397,18 @@ div.arrow {
   line-height: 18px;
 }
 
-/* Setinha para indicar que é um dropdown */
+/* Setinha  dropdown */
 .dropdown-selected::after {
   content: "\f078"; /* Código do ícone */
-  font-family: "Font Awesome 5 Free"; /* Fonte do Font Awesome */
-  font-weight: 900; /* Para usar a versão regular (far) */
+  font-family: "Font Awesome 5 Free"; 
+  font-weight: 900; 
   font-size: 12px;
   color: #313144;
   margin-left: 8px;
+}
+.dropdown-selected:active::after {
+  transform: rotate(180deg); 
+  color: #444; 
 }
 
 
@@ -1413,7 +1426,7 @@ div.arrow {
   max-height: 200px;
   overflow-y: auto;
   text-transform: capitalize;
-  animation: dropdownIn 0.5s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
+  animation: dropdownIn 1.2s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
 }
 
 /* Cada opção */
@@ -1462,6 +1475,7 @@ div.arrow {
 
 
 
+
 @keyframes dropdownIn {
   from {
     opacity: 0;
@@ -1487,3 +1501,4 @@ div.arrow {
     transform-origin: top;
   }
 }
+
