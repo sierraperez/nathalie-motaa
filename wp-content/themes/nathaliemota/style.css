@@ -1493,17 +1493,3 @@ body.no-scroll {
     transform-origin: top;
   }
 }
-
-@keyframes dropdownOut {
-  from {
-    opacity: 1;
-    transform: scaleY(1);
-    transform-origin: top;
-  }
-  to {
-    opacity: 0;
-    transform: scaleY(0);
-    transform-origin: top;
-  }
-}
-
