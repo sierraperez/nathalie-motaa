@@ -64,7 +64,7 @@
     align-content: center;
     font-size: 44px;
     color: white;
-    top: 0;
+    top: 127px;
     left: 0;
     position: fixed;
   }
@@ -405,7 +405,7 @@
 }
 
 body .open {
-  display: none;
+  overflow: hidden;
 }
 
 .menu-top .nav-menu {
