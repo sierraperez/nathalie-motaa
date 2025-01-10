@@ -982,7 +982,7 @@ textarea {
   border-radius: 20px;
   max-width: 680px;
   position: relative;
-  border: 4px solid black;
+  border: 2px solid black;
 }
 .popup-address p {
   margin: 0;
