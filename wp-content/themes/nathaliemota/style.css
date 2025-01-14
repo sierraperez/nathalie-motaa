@@ -983,6 +983,8 @@ textarea {
   max-width: 680px;
   position: relative;
   border: 2px solid black;
+  padding: 5px;
+
 }
 .popup-address p {
   margin: 0;
