@@ -724,7 +724,6 @@ final class WP_Customize_Widgets {
 		);
 
 		
-		);
 
 		/*
 		 * Gather all strings in PHP that may be needed by JS on the client.

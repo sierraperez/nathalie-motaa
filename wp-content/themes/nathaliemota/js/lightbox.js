@@ -1,140 +1,135 @@
 class Lightbox {
-  // Méthode statique qui initialise la lightbox
   static init() {
-    // Sélectionne tous les éléments ayant la classe 'single__overlay-fullscreen'
-    const links = Array.from(
-      document.querySelectorAll(".single__overlay-fullscreen")
+    const links = Array.from(document.querySelectorAll(".single__overlay-fullscreen"));
+    const gallery = links.map((link) => 
+      link.closest(".photo-item").querySelector("a.lightbox-trigger").getAttribute("href")
     );
-    // Récupère les URL des images dans la galerie
-    const gallery = links.map((link) =>
-      link
-        .closest(".photo-item")
-        .querySelector("a.lightbox-trigger")
-        .getAttribute("href")
-    );
-    // Ajoute un écouteur d'événement pour chaque lien (ouverture en plein écran)
+
     links.forEach((link) =>
       link.addEventListener("click", (e) => {
-        console.log("Click fullscreen");
-        e.preventDefault(); // Empêche le comportement par défaut du lien
-        const imageLink = link
-          .closest(".photo-item")
-          .querySelector("a.lightbox-trigger")
-          .getAttribute("href");
-        // Crée une nouvelle instance de la lightbox avec l'image cliquée et la galerie
-        new Lightbox(imageLink, gallery);
+        e.preventDefault();
+        const photoItem = link.closest(".photo-item");
+        const imageLink = photoItem.querySelector("a.lightbox-trigger").getAttribute("href");
+        const category = photoItem.querySelector(".single__overlay-categorie")?.textContent.trim() || "Sem categoria";
+        const title = photoItem.querySelector(".single__overlay-title")?.textContent.trim() || "Sem título";
+
+        new Lightbox(imageLink, gallery, category, title);
       })
     );
   }
 
-  // Constructeur de la lightbox qui prend une URL et une liste d'images
-  constructor(url, images) {
-    // Construit le DOM pour la lightbox
+  constructor(url, images, category, title) {
     this.element = this.buildDOM();
-    this.images = images; // Stocke la liste d'images
-    this.loadImage(url); // Charge l'image sélectionnée
-    this.onKeyUp = this.onKeyUp.bind(this); // Liaison du contexte pour la gestion des touches
-    document.body.appendChild(this.element); // Ajoute la lightbox au DOM
-    disableBodyScroll(this.element); // Désactive le scroll de la page quand la lightbox est ouverte
-    document.addEventListener("keyup", this.onKeyUp); // Écoute des événements clavier
+    this.images = images;
+    this.category = category;
+    this.title = title;
+    this.loadImage(url);
+    this.onKeyUp = this.onKeyUp.bind(this);
+    document.body.appendChild(this.element);
+    disableBodyScroll(this.element);
+    document.addEventListener("keyup", this.onKeyUp);
   }
 
-  // Charge l'image dans la lightbox
   loadImage(url) {
-    this.url = url; // Stocke l'URL actuelle
-    const image = new Image(); // Crée un nouvel élément image
+    this.url = url;
+    const image = new Image();
     const container = this.element.querySelector(".lightbox__container");
-    const loader = document.createElement("div"); // Crée un élément de chargement (loader)
-    loader.classList.add("lightbox__loader"); // Ajoute une classe au loader
-    container.innerHTML = ""; // Vide le conteneur
-    container.appendChild(loader); // Affiche le loader
+    const loader = document.createElement("div");
+    loader.classList.add("lightbox__loader");
+    container.innerHTML = "";
+    container.appendChild(loader);
+
     image.onload = () => {
-      container.removeChild(loader); // Enlève le loader une fois l'image chargée
-      container.appendChild(image); // Ajoute l'image dans la lightbox
-      this.url = url; // Met à jour l'URL actuelle
+      container.removeChild(loader);
+      container.appendChild(image);
+
+      // Atualiza as informações da categoria e título
+      this.updateInfo();
+
+      this.url = url;
     };
-    image.src = url; // Définit l'URL de l'image à charger
+    image.src = url;
   }
 
-  // Gestion des événements clavier
+  updateInfo() {
+    this.element.querySelector(".lightbox__info-cat").textContent = `Categoria: ${this.category}`;
+    this.element.querySelector(".lightbox__info-title").textContent = `Título: ${this.title}`;
+  }
+
   onKeyUp(e) {
     if (e.key === "Escape") {
-      // Fermer la lightbox avec la touche 'Escape'
       this.close(e);
     } else if (e.key === "ArrowLeft") {
-      // Image précédente avec la flèche gauche
       this.prev(e);
     } else if (e.key === "ArrowRight") {
-      // Image suivante avec la flèche droite
       this.next(e);
     }
   }
 
-  // Ferme la lightbox
   close(e) {
-    e.preventDefault(); // Empêche l'action par défaut
-    this.element.classList.add("fadeOut"); // Ajoute une classe pour l'effet de sortie
-    location.reload(); // Recharge la page (pas toujours recommandé mais utilisé ici)
-    enableBodyScroll(this.element); // Réactive le scroll de la page
+    e.preventDefault();
+    this.element.classList.add("fadeOut");
+    enableBodyScroll(this.element);
     window.setTimeout(() => {
-      this.element.parentElement.removeChild(this.element); // Supprime la lightbox du DOM
-    }, 500); // Attente de 500 ms avant de supprimer la lightbox
-    document.removeEventListener("keyup", this.onKeyUp); // Supprime l'écoute des touches
+      this.element.parentElement.removeChild(this.element);
+    }, 500);
+    document.removeEventListener("keyup", this.onKeyUp);
   }
 
-  // Passe à l'image suivante dans la galerie
   next(e) {
-    e.preventDefault(); // Empêche l'action par défaut
-    let i = this.images.findIndex((image) => image === this.url); // Trouve l'index de l'image actuelle
+    e.preventDefault();
+    let i = this.images.findIndex((image) => image === this.url);
     if (i === this.images.length - 1) {
-      // Si c'est la dernière image, revenir au début
       i = -1;
     }
-    this.loadImage(this.images[i + 1]); // Charge l'image suivante
+    this.loadNewImage(this.images[i + 1]);
   }
 
-  // Passe à l'image précédente dans la galerie
   prev(e) {
-    e.preventDefault(); // Empêche l'action par défaut
-    let i = this.images.findIndex((image) => image === this.url); // Trouve l'index de l'image actuelle
+    e.preventDefault();
+    let i = this.images.findIndex((image) => image === this.url);
     if (i === 0) {
-      // Si c'est la première image, aller à la dernière
       i = this.images.length;
     }
-    this.loadImage(this.images[i - 1]); // Charge l'image précédente
+    this.loadNewImage(this.images[i - 1]);
   }
 
-  // Construit le DOM de la lightbox
+  loadNewImage(url) {
+    const photoItem = document.querySelector(`a.lightbox-trigger[href="${url}"]`)?.closest(".photo-item");
+    if (photoItem) {
+      this.category = photoItem.querySelector(".single__overlay-categorie")?.textContent.trim() || "Sem categoria";
+      this.title = photoItem.querySelector(".single__overlay-title")?.textContent.trim() || "Sem título";
+    }
+
+    this.loadImage(url);
+  }
+
   buildDOM() {
-    const dom = document.createElement("div"); // Crée un élément div pour la lightbox
-    dom.classList.add("lightbox"); // Ajoute la classe 'lightbox'
+    const dom = document.createElement("div");
+    dom.classList.add("lightbox");
     dom.innerHTML = `
-            <button class="lightbox__close"></button>  <!-- Bouton de fermeture -->
-            <button class="lightbox__next">Suivant</button>  <!-- Bouton suivant -->
-            <button class="lightbox__prev">Précédent</button>  <!-- Bouton précédent -->
-            <div class="lightbox__container"></div>  <!-- Conteneur pour l'image -->
-            <div class="lightbox__overlay"></div>  <!-- Overlay derrière la lightbox -->
-        `;
-    // Ajoute les écouteurs d'événements pour les boutons
-    dom
-      .querySelector(".lightbox__close")
-      .addEventListener("click", this.close.bind(this));
-    dom
-      .querySelector(".lightbox__next")
-      .addEventListener("click", this.next.bind(this));
-    dom
-      .querySelector(".lightbox__prev")
-      .addEventListener("click", this.prev.bind(this));
-    return dom; // Retourne l'élément construit
+      <button class="lightbox__close"></button>
+      <button class="lightbox__next">Suivant</button>
+      <button class="lightbox__prev">Précédent</button>
+      <div class="lightbox__container"></div>
+      <div class="lightbox__info">
+        <span class="lightbox__info-cat"></span>
+        <span class="lightbox__info-title"></span>
+      </div>
+      <div class="lightbox__overlay"></div>
+    `;
+
+    dom.querySelector(".lightbox__close").addEventListener("click", this.close.bind(this));
+    dom.querySelector(".lightbox__next").addEventListener("click", this.next.bind(this));
+    dom.querySelector(".lightbox__prev").addEventListener("click", this.prev.bind(this));
+
+    return dom;
   }
 }
 
-// Initialisation de la lightbox une fois le DOM chargé
+// Inicializa a Lightbox após carregamentos AJAX
 console.log("lightbox");
-
-// Réinitialisation après chargement AJAX
-$( document ).on( "ajaxComplete", function() {
-    Lightbox.init()
- } );
-
- Lightbox.init();
+$(document).on("ajaxComplete", function () {
+  Lightbox.init();
+});
+Lightbox.init();
